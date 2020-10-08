@@ -1,0 +1,7 @@
+branchName: short
+autoCloseIssue: true
+branches:
+  - label: hotfix
+    name: release
+  - label: '*'
+    name: development

@@ -1,0 +1,12 @@
+digraph "classes_easyTemplateLib" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{easyTemplateLib.Engines.calculator1.Calculator1|name : str\l|calculate()\l}", shape="record"];
+"1" [label="{easyTemplateLib.Engines.calculator2.Calculator2|name : str\l|calculate()\l}", shape="record"];
+"2" [label="{easyTemplateLib.Engines.calculatorTemplate.CalculatorTemplate|calculators : list\lftol\lx\ly\l|calculate()\l}", shape="record"];
+"3" [label="{easyTemplateLib.Objects.fitting.Model|fit_func\lfunc\lstd : NoneType\lx0\l|set_parameter(param, value)\lset_parameters()\l}", shape="record"];
+"4" [label="{easyTemplateLib.Objects.fitting.Parameter|fixed : bool\lmax : NoneType\lmin : NoneType\lname : NoneType\lvalue : float\l|}", shape="record"];
+"5" [label="{easyTemplateLib.interface.Interface|calculator\lftol : float\lmodel\lx\ly\ly_opt : NoneType\l|clear_calc()\lfit()\lplot()\lset_calculator(calc)\lset_parameter(parm, value)\l}", shape="record"];
+"0" -> "2" [arrowhead="empty", arrowtail="none"];
+"1" -> "2" [arrowhead="empty", arrowtail="none"];
+}

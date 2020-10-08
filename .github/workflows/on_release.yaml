@@ -1,0 +1,41 @@
+name: PyPi Release
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - uses: Gr1N/setup-poetry@v2
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Check Build
+        run: |
+          pip install twine
+          poetry update
+          poetry build
+          python -m twine check dist/*
+
+      - name: Deploy to PyPi
+        run: |
+          poetry publish
+        env:
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}

@@ -1,0 +1,18 @@
+digraph "packages_easyTemplateLib" {
+charset="utf-8"
+rankdir=BT
+"0" [label="easyTemplateLib", shape="box"];
+"1" [label="easyTemplateLib.Engines", shape="box"];
+"2" [label="easyTemplateLib.Engines.calculator1", shape="box"];
+"3" [label="easyTemplateLib.Engines.calculator2", shape="box"];
+"4" [label="easyTemplateLib.Engines.calculatorTemplate", shape="box"];
+"5" [label="easyTemplateLib.Objects", shape="box"];
+"6" [label="easyTemplateLib.Objects.fitting", shape="box"];
+"7" [label="easyTemplateLib.interface", shape="box"];
+"1" -> "2" [arrowhead="open", arrowtail="none"];
+"1" -> "3" [arrowhead="open", arrowtail="none"];
+"1" -> "4" [arrowhead="open", arrowtail="none"];
+"2" -> "4" [arrowhead="open", arrowtail="none"];
+"3" -> "4" [arrowhead="open", arrowtail="none"];
+"7" -> "1" [arrowhead="open", arrowtail="none"];
+}

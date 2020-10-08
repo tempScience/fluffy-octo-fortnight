@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "easyTemplateLib"
+version = "0.0.1"
+description = "easyTemplate - The easy way to interface with things"
+authors = ["Simon Ward <2798086+wardsimon@users.noreply.github.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+classifiers=[
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",  # Define that your audience are developers
+    "Topic :: Scientific/Engineering :: Physics",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",  # Again, pick a license
+    "Programming Language :: Python :: 3.6",
+]
+packages = [
+    { include = "easyTemplateLib" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.6, >=3.6.1"
+numpy = "^1.18.5"
+scipy = "^1.4.1"
+#matplotlib = "^3.2.1"
+importlib-metadata = {version = "^1.6.1", python = "<3.8"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+pytest-cov = "^2.9.0"
+pytest-mock = "^3.1.1"
+codecov = "^2.1.4"
+pre-commit = "^2.5.0"
+black = "^19.10b0"
+isort = "^4.3.21"
+flake8 = "^3.8.3"
+
+[tool.isort]
+known_third_party = ["matplotlib", "numpy", "requests", "scipy", "yaml"]
+multi_line_output = 3
+lines_after_imports = 2
+force_grid_wrap = 0
+combine_as_imports = true
+include_trailing_comma = true
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py{36,37,38}
+
+[gh-actions]
+python =
+    3.6: py36
+    3.7: py37
+    3.8: py38
+
+[gh-actions:env]
+PLATFORM =
+    ubuntu-latest: linux
+    macos-latest: macos
+    windows-latest: windows
+
+[testenv]
+passenv = CI GITHUB_ACTION COVERAGE_FILE
+deps = coverage
+whitelist_externals = poetry
+commands =
+    poetry install -vvv
+    poetry run pytest
+    coverage xml -i
+"""
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
